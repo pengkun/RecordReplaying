@@ -12,7 +12,9 @@
 ### 2.  坐标数组、坐标对应的颜色数组
 额，坐标数组自己整理吧。颜色我这里的处理方式采用的是高德demo里面的算法，只是修改了一下偏冷色和偏暖色的值。
 var coordinateArray: [CLLocationCoordinate2D] = []
+
 var colorArray: [UIColor] = []
+
 coordinateArray 转换坐标
 
       fileprivate func pointsForCoordinates() ->[CGPoint] {
@@ -29,7 +31,7 @@ coordinateArray 转换坐标
 (***Swift中苹果对CGMutablePath进行了重构，CGMutablePath被定义为了类, 内存这一块就不用我们手动管理了，👍👍👍***)
 这个类关键代码：
 
-      func add(points: [CGPoint], colors: [UIColor]) {
+    func add(points: [CGPoint], colors: [UIColor]) {
         self._points = points
         self._colors = colors
     }
