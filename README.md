@@ -2,14 +2,14 @@
 高德地图跑步轨迹展示的代码在高德官方的3D地图示例中RunningLineViewController类中已经有很好的示例代码，就不再赘述了 [下载AMap_iOS_Demo](http://a.amap.com/lbs/static/zip/AMap_iOS_Demo.zip)。今天主要讲一下实现轨迹回放。当然这个方法对于所有地图的轨迹回放都是可用的。
 
 实现回放功能的准备工作：
-- [新建一个处理回放的class](#新建一个处理回放的class)
-- [坐标数组、坐标对应的颜色数组](#坐标数组、坐标对应的颜色数组)
-- [渐变线](#渐变线)
-- [动画](#动画)
+- [新建一个处理回放的class](###新建一个处理回放的class)
+- [坐标数组、坐标对应的颜色数组](###坐标数组、坐标对应的颜色数组)
+- [渐变线](###渐变线)
+- [动画](###动画)
 
-##### 1.  新建一个处理回放的class
+### 1.  新建一个处理回放的class
 新建一个class，我这里命名未Replaying
-##### 2.  坐标数组、坐标对应的颜色数组
+### 2.  坐标数组、坐标对应的颜色数组
 额，坐标数组自己整理吧。颜色我这里的处理方式采用的是高德demo里面的算法，只是修改了一下偏冷色和偏暖色的值。
 var coordinateArray: [CLLocationCoordinate2D] = []
 var colorArray: [UIColor] = []
@@ -24,7 +24,7 @@ coordinateArray 转换坐标
         }
         return points
     }
-##### 3. 渐变线
+### 3. 渐变线
 自定义CALayer，重写`draw(in ctx: CGContext)`方法。这里要用到Quartz2D的知识点，我在简书里找到了关于[Quartz2D讲解](http://www.jianshu.com/p/eb6bd4b0f9a5)可以学习一下。这里用到了路径、颜色与颜色空间、渐变相关技术。
 (***Swift中苹果对CGMutablePath进行了重构，CGMutablePath被定义为了类, 内存这一块就不用我们手动管理了，👍👍👍***)
 这个类关键代码：
@@ -95,7 +95,7 @@ coordinateArray 转换坐标
     self.shapeLayer.path = path
     self.gradientLayer.mask = self.shapeLayer
 ok，渐变线出来了
-##### 4. 动画
+### 4. 动画
 动画
 
     let shapeLayerAnimation = self.constructShapeLayerAnimation()
@@ -109,4 +109,3 @@ ok，渐变线出来了
         return annimation
     }
 
-[代码]()
